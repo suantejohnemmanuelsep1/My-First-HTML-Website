@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback - Velvet Brew Café</title>
+  <style>
+    body {
+      background-color: #8B4513;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: white;
+      color: #8B4513;
+      padding: 15px;
+      font-size: 1.5rem;
+    }
+    form {
+      margin-top: 20px;
+    }
+    input, textarea {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+    }
+    .submit-btn {
+      background-color: #D2B48C;
+      color: #8B4513;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .submit-btn:hover {
+      background-color: #c5a773;
+    }
+    #feedbackList {
+      margin-top: 30px;
+      text-align: left;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    a.back-link {
+      color: #FFD700;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    a.back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>Velvet Brew Café - Feedback</header>
+  <p>We value your feedback! Please share your thoughts below.</p>
+
+  <form id="feedbackForm" onsubmit="return submitFeedback()">
+    <input type="text" id="fbName" placeholder="Your Name" required><br>
+    <input type="email" id="fbEmail" placeholder="Your Email" required><br>
+    <textarea id="fbMessage" placeholder="Write your feedback..." rows="5" required></textarea><br>
+    <button type="submit" class="submit-btn">Submit Feedback</button>
+  </form>
+
+  <div id="feedbackList"></div>
+
+  <a href="index.html" class="back-link">← Back to Home</a>
+
+  <script>
+    function submitFeedback() {
+      const name = document.getElementById("fbName").value.trim();
+      const email = document.getElementById("fbEmail").value.trim();
+      const message = document.getElementById("fbMessage").value.trim();
+
+      if (!name || !email || !message) {
+        alert("Please fill in all fields.");
+        return false;
+      }
+
+      const feedbackList = document.getElementById("feedbackList");
+      const newFeedback = document.createElement("p");
+      newFeedback.innerHTML = `<strong>${name}</strong> (${email}) says:<br>${message}`;
+      newFeedback.style.backgroundColor = "#a0522d";
+      newFeedback.style.padding = "10px";
+      newFeedback.style.borderRadius = "10px";
+      newFeedback.style.marginTop = "10px";
+      feedbackList.appendChild(newFeedback);
+
+      document.getElementById("feedbackForm").reset();
+      alert("Thank you for your feedback!");
+      return false;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Velvet Brew</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="login-box" id="loginPage">
+    <h1>WELCOME TO Velvet Brew</h1>
+    <input type="email" id="email" placeholder="Enter your email"><br>
+    <input type="password" id="password" placeholder="Enter your password"><br>
+    <button onclick="login()">Login</button>
+    <p>Don't have an account? <span class="link" onclick="showCreateAccount()">Create Account</span></p>
+    <p id="errorMsg" class="error"></p>
+  </div>
+
+  <div class="login-box" id="createAccountPage" style="display:none;">
+    <h1>Create Your Account</h1>
+    <input type="email" id="newEmail" placeholder="Enter your email"><br>
+    <input type="password" id="newPassword" placeholder="Enter your password"><br>
+    <button onclick="createAccount()">Create Account</button>
+    <p>Already have an account? <span class="link" onclick="showLogin()">Login</span></p>
+    <p id="createMsg" class="error"></p>
+  </div>
+
+  <div class="main-content" id="mainContent">
+    <header>
+      <p>WELCOME TO VELVET BREW</p>
+      <nav>
+        <a href="feedback.html" target="_blank">Feedback</a>
+        <a href="#menu">Menu</a>
+        <a href="about.html" target="_blank">About</a>
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=VelVetBewCafe@gmail.com" target="_blank">Contact</a>
+        <a href="#address">Address</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </nav>
+    </header>
+
+    <section id="menu">
+      <h2>Menu</h2>
+      <div class="menu">
+        <article class="item" onclick="showIngredients('Espresso')">
+          <img src="espresso.jpg" alt="Espresso">
+          <h3>Espresso</h3>
+          <p>₱60</p>
+        </article>
+
+        <article class="item" onclick="showIngredients('Latte')">
+          <img src="latte.jpg" alt="Latte">
+          <h3>Latte</h3>
+          <p>₱95</p>
+        </article>
+
+        <article class="item" onclick="showIngredients('Cold Brew')">
+          <img src="cold brew.jpg" alt="Cold Brew">
+          <h3>Cold Brew</h3>
+          <p>₱110</p>
+        </article>
+
+        <article class="item" onclick="showIngredients('Americano')">
+          <img src="americano.jpg" alt="Americano">
+          <h3>Americano</h3>
+          <p>₱75</p>
+        </article>
+
+        <article class="item" onclick="showIngredients('Hot Chocolate')">
+          <img src="hotchocolate.jpg" alt="Hot Chocolate">
+          <h3>Hot Chocolate</h3>
+          <p>₱110</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About</h2>
+      <p>We serve fresh, handcrafted coffee every day. Simple, fast, and delicious.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=VelVetBewCafe@gmail.com" target="_blank" style="color: #ffd700;">VelVetBewCafe@gmail.com</a></p>
+    </section>
+
+    <section id="address">
+      <h2>Address</h2>
+      <p>Roxas Avenue Street</p>
+    </section>
+
+    <footer>
+      &copy; 2025 Velvet Brew. All rights reserved.
+    </footer>
+  </div>
+
+  <div id="ingredientModal" class="modal">
+    <div class="modal-content">
+      <h2 id="drinkTitle"></h2>
+      <ul id="ingredientList"></ul>
+      <iframe id="videoFrame" src="" allowfullscreen></iframe>                        
+      <button class="order-btn" onclick="showOrder()">Order</button>
+
+      <div id="orderSection">
+        <input type="text" id="orderAddress" placeholder="Enter your address">
+        <button class="order-btn" onclick="placeOrder()">Place Order</button>
+      </div>
+
+      <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
