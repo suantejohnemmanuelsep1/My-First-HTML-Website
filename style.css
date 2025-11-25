@@ -1,4 +1,4 @@
- body {
+body {
       background-color: #8B4513;
       color: #fff;
       font-family: Arial, sans-serif;
@@ -22,6 +22,10 @@
     nav {
       background-color: #222;
       padding: 10px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
     }
 
     nav a {
@@ -35,6 +39,12 @@
     nav a:hover {
       text-decoration: underline;
       color: #deb887;
+    }
+
+    nav a.feedback-btn {
+      position: absolute;
+      right: 20px;
+      margin: 0;
     }
 
     section {
@@ -143,31 +153,68 @@
     }
 
     .modal-content {
-      background-color: #a0522d;
+      background: linear-gradient(135deg, #a0522d 0%, #8B4513 50%, #5C3317 100%);
       margin: auto;
-      padding: 20px;
-      border-radius: 10px;
+      padding: 40px;
+      border-radius: 20px;
       width: 80%;
       max-width: 500px;
       color: white;
       text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      border: 3px solid #ffd700;
+      position: relative;
+    }
+
+    .modal-content::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    }
+
+    .modal-content h2 {
+      color: #ffd700;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.3);
+      letter-spacing: 1px;
     }
 
     .close-btn, .order-btn {
-      background-color: #5C3317;
+      background: linear-gradient(135deg, #5C3317 0%, #3e2210 100%);
       color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 5px;
+      border: 2px solid #ffd700;
+      padding: 12px 25px;
+      border-radius: 10px;
       cursor: pointer;
       margin-top: 15px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
 
     .close-btn:hover, .order-btn:hover {
-      background-color: #3e2210;
+      background: linear-gradient(135deg, #3e2210 0%, #5C3317 100%);
+      box-shadow: 0 0 25px #ffd700, 0 5px 15px rgba(0, 0, 0, 0.4);
+      transform: scale(1.05) translateY(-2px);
+    }
+
+    .close-btn:active, .order-btn:active {
+      transform: scale(0.98);
     }
 
     iframe {
+      width: 100%;
+      height: 250px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    video {
       width: 100%;
       height: 250px;
       border-radius: 10px;
@@ -186,4 +233,292 @@
       border-radius: 5px;
       border: none;
       font-size: 1rem;
+    }
+
+    .merchandise-modal {
+      display: none;
+      position: fixed;
+      z-index: 2;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.9);
+    }
+
+    .merchandise-content {
+      background: linear-gradient(135deg, #a0522d 0%, #8B4513 50%, #5C3317 100%);
+      margin: auto;
+      padding: 40px;
+      border-radius: 20px;
+      width: 85%;
+      max-width: 800px;
+      color: white;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      border: 3px solid #ffd700;
+    }
+
+    .merchandise-content::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    }
+
+    .merchandise-content h2 {
+      font-size: 2.5rem;
+      color: #ffd700;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.3);
+      letter-spacing: 2px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    .merchandise-content p {
+      color: wheat;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .merch-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .merch-close-btn:hover {
+      color: #ffd700;
+    }
+
+    .merch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .merch-card {
+      background: linear-gradient(135deg, #a0522d 0%, #8B4513 100%);
+      border-radius: 15px;
+      padding: 15px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .merch-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+      transition: left 0.6s ease;
+    }
+
+    .merch-card:hover {
+      transform: scale(1.08) translateY(-5px);
+      box-shadow: 0 15px 40px rgba(255, 215, 0, 0.4);
+      border-color: #ffd700;
+    }
+
+    .merch-card:hover::before {
+      left: 100%;
+    }
+
+    .merch-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .merch-card:hover img {
+      transform: scale(1.05);
+      filter: brightness(1.1);
+    }
+
+    .merch-card h3 {
+      margin: 10px 0;
+      font-size: 1.3rem;
+      color: #ffd700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+      font-weight: bold;
+    }
+
+    .merch-card p {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ffd700;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .contact-modal {
+      display: none;
+      position: fixed;
+      z-index: 3;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .contact-content {
+      background: linear-gradient(135deg, #a0522d 0%, #8B4513 50%, #5C3317 100%);
+      margin: auto;
+      padding: 50px 40px;
+      border-radius: 20px;
+      width: 85%;
+      max-width: 550px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      border: 3px solid #ffd700;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-content::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffd700, transparent);
+    }
+
+    .contact-content h2 {
+      font-size: 2.8rem;
+      margin-bottom: 40px;
+      color: #ffd700;
+      font-family: 'Times New Roman', Times, serif;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.3);
+      letter-spacing: 2px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.3);
+      }
+      to {
+        text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 215, 0, 0.6);
+      }
+    }
+
+    .contact-info {
+      margin: 25px 0;
+      font-size: 1.1rem;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+      padding: 20px 25px;
+      border-radius: 12px;
+      border-left: 5px solid #ffd700;
+      transition: all 0.4s ease;
+      position: relative;
+    }
+
+    .contact-info::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, rgba(255, 215, 0, 0) 0%, rgba(255, 215, 0, 0.1) 50%, rgba(255, 215, 0, 0) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      border-radius: 12px;
+    }
+
+    .contact-info:hover {
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.2) 0%, rgba(0, 0, 0, 0.3) 100%);
+      transform: translateX(8px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
+    }
+
+    .contact-info:hover::before {
+      opacity: 1;
+    }
+
+    .contact-info label {
+      font-weight: bold;
+      color: #ffd700;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+      font-family: 'Times New Roman', Times, serif;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .contact-info p {
+      margin: 0;
+      color: #ffffff;
+      font-size: 1.05rem;
+      font-weight: 500;
+    }
+
+    .contact-email {
+      color: #ffd700;
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    .contact-email:hover {
+      color: #ffffff;
+      background-color: rgba(255, 215, 0, 0.2);
+      text-shadow: 0 0 15px #ffd700;
+      transform: scale(1.05);
+    }
+
+    .contact-close-btn {
+      background: linear-gradient(135deg, #5C3317 0%, #3e2210 100%);
+      color: white;
+      border: 2px solid #ffd700;
+      padding: 14px 35px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 35px;
+      font-size: 1.05rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-close-btn:hover {
+      background: linear-gradient(135deg, #3e2210 0%, #5C3317 100%);
+      box-shadow: 0 0 25px #ffd700, 0 5px 15px rgba(0, 0, 0, 0.4);
+      transform: scale(1.08) translateY(-2px);
+    }
+
+    .contact-close-btn:active {
+      transform: scale(0.98);
     }
